@@ -64,6 +64,14 @@ services:
       traefik.http.routers.gitlab.rule: Host(`gitlab.lan.com`)
       traefik.http.services.gitlab.loadbalancer.server.port: 80
 
+  # -------------------------------------------------------------------------- #
+  gitlab:
+    image: gitlab/gitlab-ce:latest
+    build:
+      context: ../delivery
+    environment:
+      GITLAB_FEEDER_BASEPATH: ../delivery/data/backends
+
 # -------------------------------- networks ---------------------------------- #
 networks:
   network-delivery:
